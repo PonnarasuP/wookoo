@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A product in the store",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The name of the product" },
+        "price": { "type": "number", "description": "The price of the product" },
+        "description": { "type": "string", "description": "The description of the product" },
+        "category": { "type": "string", "description": "The category of the product" }
+      },
+      "required": ["name", "price", "category"]
+    },
+    "Cart": {
+      "title": "Cart",
+      "description": "A user's shopping cart",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The ID of the user" },
+        "items": { "type": "array", "description": "The items in the cart" }
+      },
+      "required": ["userId", "items"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A user's order",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The ID of the user" },
+        "items": { "type": "array", "description": "The items in the order" },
+        "total": { "type": "number", "description": "The total price" },
+        "status": { "type": "string", "description": "The status of the order" }
+      },
+      "required": ["userId", "items", "total", "status"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "A payment record",
+      "type": "object",
+      "properties": {
+        "orderId": { "type": "string", "description": "The ID of the order" },
+        "amount": { "type": "number", "description": "The amount paid" },
+        "status": { "type": "string", "description": "The status of the payment" }
+      },
+      "required": ["orderId", "amount", "status"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin configuration",
+      "type": "object",
+      "properties": {
+        "adminId": { "type": "string", "description": "The ID of the admin" }
+      },
+      "required": ["adminId"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "Product" },
+      "description": "Products collection"
+    },
+    "/carts/{cartId}": {
+      "schema": { "$ref": "Cart" },
+      "description": "Carts collection"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Orders collection"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "Payment" },
+      "description": "Payments collection"
+    },
+    "/admin/{adminId}": {
+      "schema": { "$ref": "Admin" },
+      "description": "Admin collection"
+    }
+  }
+}
